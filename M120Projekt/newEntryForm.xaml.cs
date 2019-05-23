@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -73,10 +74,32 @@ namespace M120Projekt
                 disableButtons();
             }
         }
+        private void validatePrice()
+        {
+            Regex priceReg = new Regex(@"^[0-9]*.[0-9]{2}$");
+            Match match = priceReg.Match(tbAmount.Text);
+            if (match.Success)
+            {
+                tbAmount.Foreground = Brushes.Green;
+            }
+            else
+            {
+                if (tbAmount.Text[tbAmount.Text.Length-2] == '.')
+                {
+                    tbAmount.Text += '0';
+                    tbAmount.Foreground = Brushes.Green;
+                }
+                else
+                {
+                    tbAmount.Foreground = Brushes.Red;
+                }
+            }
+
+        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.disableButtons();
+            disableButtons();
         }
 
         private void Tb_title_TextChanged(object sender, TextChangedEventArgs e)
@@ -92,6 +115,11 @@ namespace M120Projekt
         private void Tb_date_TextChanged(object sender, TextChangedEventArgs e)
         {
             enableButtonsIfInput();
+        }
+
+        private void SubmitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            validatePrice();
         }
     }
 }

@@ -37,7 +37,7 @@
                        FontWeight="DemiBold"/>
 
         <TextBox Height="50px"
-                 Name="tb_title"
+                 Name="tbTitle"
                          BorderBrush="LightGray"
                          Grid.Column="6"
                          VerticalAlignment="Top"
@@ -52,7 +52,7 @@
                        FontWeight="DemiBold"/>
 
         <TextBox Height="20"
-                 Name="tb_amount"
+                 Name="tbAmount"
                          BorderBrush="LightGray"
                          Width="100"
                          Grid.Column="6"
@@ -87,7 +87,7 @@
                        FontSize="16px" FontWeight="DemiBold"/>
 
         <TextBox Height="20"
-                 Name="tb_date"
+                 Name="tbDate"
                          BorderBrush="LightGray"
                          Width="100"
                          VerticalAlignment="Bottom"
@@ -102,7 +102,7 @@
                 HorizontalAlignment="Left"
                 BorderBrush="Transparent"
                 Margin="45, 0, 0, 40"
-                Content="Submit"></Button>
+                Content="Submit" Click="SubmitBtn_Click"></Button>
 
         <Label x:Name="warningField"
                Content=""
