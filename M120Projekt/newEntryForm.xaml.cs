@@ -76,23 +76,20 @@ namespace M120Projekt
         }
         private void validatePrice()
         {
-            Regex priceReg = new Regex(@"^[0-9]*.[0-9]{2}$");
+            Regex priceReg = new Regex(@"^([0-9]*|[0-9]*[.]{1}[0-9]{1,2})$");
             Match match = priceReg.Match(tbAmount.Text);
             if (match.Success)
             {
                 tbAmount.Foreground = Brushes.Green;
+                if (tbAmount.Text[tbAmount.Text.Length - 2] == '.')
+                {
+                    tbAmount.Text += '0';
+                }
             }
             else
             {
-                if (tbAmount.Text[tbAmount.Text.Length-2] == '.')
-                {
-                    tbAmount.Text += '0';
-                    tbAmount.Foreground = Brushes.Green;
-                }
-                else
-                {
-                    tbAmount.Foreground = Brushes.Red;
-                }
+                tbAmount.Foreground = Brushes.Red;
+                priceWarningField.Content = "Invalid format!\nOnly use a divider\nif necessary";
             }
 
         }

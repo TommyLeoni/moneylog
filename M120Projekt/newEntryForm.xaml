@@ -104,6 +104,16 @@
                 Margin="45, 0, 0, 40"
                 Content="Submit" Click="SubmitBtn_Click"></Button>
 
+        <Label x:Name="priceWarningField"
+               Content=""
+               MaxWidth="120"
+               Foreground="Red"
+               Grid.Row="1"
+               Grid.Column="1"
+               Margin="40, 40, 40, 80"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"></Label>
+
         <Label x:Name="warningField"
                Content=""
                Foreground="Red"
