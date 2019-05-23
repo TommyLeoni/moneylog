@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace M120Projekt.Data
 {
-    public class Finances
+    public class Entry
     {
         #region Datenbankschicht
         [Key]
@@ -21,12 +21,14 @@ namespace M120Projekt.Data
         [Required]
         public String Currency { get; set; }
         [Required]
-        public DateTime DateTimePurchased { get; set; }
+        public String PaymentMethod { get; set; }
+        [Required]
+        public String DateTimePurchased { get; set; }
         [Required]
         public Boolean Edited { get; set; }
         #endregion
         #region Applikationsschicht
-        public Finances() { }
+        public Entry() { }
         [NotMapped]
         public String BerechnetesAttribut
         {
@@ -35,19 +37,19 @@ namespace M120Projekt.Data
                 return "The getter holds code for attributes calculated throughout the duration";
             }
         }
-        public static IEnumerable<Data.Finances> LesenAlle()
+        public static IEnumerable<Data.Entry> LesenAlle()
         {
             return (from record in Data.Global.context.Finances select record);
         }
-        public static Data.Finances LesenID(Int64 EntryID)
+        public static Data.Entry LesenID(Int64 EntryID)
         {
             return (from record in Data.Global.context.Finances where record.EntryID == EntryID select record).FirstOrDefault();
         }
-        public static IEnumerable<Data.Finances> LesenAttributGleich(String suchbegriff)
+        public static IEnumerable<Data.Entry> LesenAttributGleich(String suchbegriff)
         {
             return (from record in Data.Global.context.Finances where record.TitleProduct == suchbegriff select record);
         }
-        public static IEnumerable<Data.Finances> LesenAttributWie(String suchbegriff)
+        public static IEnumerable<Data.Entry> LesenAttributWie(String suchbegriff)
         {
             return (from record in Data.Global.context.Finances where record.TitleProduct.Contains(suchbegriff) select record);
         }
@@ -56,7 +58,7 @@ namespace M120Projekt.Data
             if (this.TitleProduct == null || this.TitleProduct == "") this.TitleProduct = "leer";
             if (this.AmountSpent == 0.00) this.AmountSpent = 1.00;
             if (this.Currency == null || this.Currency == "") this.Currency = "leer";
-            if (this.DateTimePurchased == null) this.DateTimePurchased = DateTime.MinValue;
+            if (this.DateTimePurchased == null) this.DateTimePurchased = DateTime.Now.ToString();
             Data.Global.context.Finances.Add(this);
             Data.Global.context.SaveChanges();
             return this.EntryID;

@@ -60,7 +60,7 @@
                          HorizontalAlignment="Left"
                          Margin="45, -40, 0, 0" TextChanged="Tb_amount_TextChanged"/>
 
-        <ComboBox x:Name="Currency" Margin="90, -40, 120, 0" Grid.Column="6" Height="20" Width="60" BorderThickness="0" IsDropDownOpen="False">
+        <ComboBox x:Name="cbCurrency" Margin="90, -40, 120, 0" Grid.Column="6" Height="20" Width="60" BorderThickness="0" IsDropDownOpen="False">
             <ComboBoxItem Content="CHF" Foreground="Black"/>
             <ComboBoxItem Content="EURO" Background="Transparent"/>
             <ComboBoxItem Content="USD" Background="Transparent"/>
@@ -73,7 +73,7 @@
                        VerticalAlignment="Top"
                        FontSize="16px" FontWeight="DemiBold"/>
 
-        <ComboBox Background="White" x:Name="PaymentMethod" Margin="45, 120, 120, 0" Grid.Column="6" Height="20" Width="120" HorizontalAlignment="Left" BorderThickness="0" Foreground="Black">
+        <ComboBox Background="White" x:Name="cbPaymentMethod" Margin="45, 120, 120, 0" Grid.Column="6" Height="20" Width="120" HorizontalAlignment="Left" BorderThickness="0" Foreground="Black">
             <ComboBoxItem Content="PayPal"/>
             <ComboBoxItem Content="Mastercard"/>
             <ComboBoxItem Content="Postfinance"/>

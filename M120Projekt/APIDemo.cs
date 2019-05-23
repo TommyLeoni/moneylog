@@ -11,21 +11,17 @@ namespace M120Projekt
     {
         #region KlasseA
         // Create
-        public static void DemoACreate()
+        public static void Create()
         {
             Debug.Print("--- DemoACreate ---");
-            // Finances
-            Data.Finances klasseA1 = new Data.Finances();
+            // Entry
+            Data.Entry klasseA1 = new Data.Entry();
             klasseA1.TitleProduct = "Artikel 1";
-            klasseA1.DateTimePurchased = DateTime.Today;
             Int64 klasseA1Id = klasseA1.Erstellen();
             Debug.Print("Artikel erstellt mit Id:" + klasseA1Id);
         }
         public static void DemoACreateKurz()
         {
-            Data.Finances klasseA2 = new Data.Finances { TitleProduct = "Artikel 2", Edited = true, DateTimePurchased = DateTime.Today };
-            Int64 klasseA2Id = klasseA2.Erstellen();
-            Debug.Print("Artikel erstellt mit Id:" + klasseA2Id);
         }
 
         // Read
@@ -33,7 +29,7 @@ namespace M120Projekt
         {
             Debug.Print("--- DemoARead ---");
             // Demo liest alle
-            foreach (Data.Finances klasseA in Data.Finances.LesenAlle())
+            foreach (Data.Entry klasseA in Data.Entry.LesenAlle())
             {
                 Debug.Print("Artikel Id:" + klasseA.EntryID + " Name:" + klasseA.TitleProduct);
             }
@@ -42,8 +38,8 @@ namespace M120Projekt
         public static void DemoAUpdate()
         {
             /* Debug.Print("--- DemoAUpdate ---");
-            // Finances ändert Attribute
-            Data.Finances klasseA1 = Data.Finances.LesenID(1);
+            // Entry ändert Attribute
+            Data.Entry klasseA1 = Data.Entry.LesenID(1);
             klasseA1.TitleProduct = "Artikel 1 nach Update";
             klasseA1.Aktualisieren(); */
         }
@@ -51,7 +47,7 @@ namespace M120Projekt
         public static void DemoADelete()
         {
             /* Debug.Print("--- DemoADelete ---");
-            Data.Finances.LesenID(1).Loeschen();
+            Data.Entry.LesenID(1).Loeschen();
             Debug.Print("Artikel mit Id 1 gelöscht"); */
         }
         #endregion

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using M120Projekt.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -116,7 +117,30 @@ namespace M120Projekt
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            validatePrice();
+            APIDemo.DemoACreate
+            try
+            {
+                validatePrice();
+                Entry newEntry = new Entry();
+                newEntry.AmountSpent = Convert.ToDouble(tbAmount.Text);
+                newEntry.Currency = cbCurrency.SelectedValue.ToString();
+                newEntry.TitleProduct = tbTitle.Text;
+                newEntry.PaymentMethod = cbPaymentMethod.SelectedValue.ToString();
+                if (String.IsNullOrEmpty(tbDate.Text))
+                {
+                    newEntry.DateTimePurchased = DateTime.Now.ToString();
+                } else
+                {
+                    newEntry.DateTimePurchased = tbDate.Text;
+                }
+                newEntry.Erstellen();
+                warningField.Content = "Saved";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
         }
     }
 }

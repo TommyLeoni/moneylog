@@ -79,7 +79,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\Global.cs" />
-    <Compile Include="Data\Finances.cs" />
+    <Compile Include="Data\Entry.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

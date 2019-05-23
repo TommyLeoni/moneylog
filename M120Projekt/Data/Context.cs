@@ -16,8 +16,8 @@ namespace M120Projekt.Data
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Finances>().ToTable("Finances"); // Damit kein "s" angehängt wird an Tabelle
+            modelBuilder.Entity<Entry>().ToTable("Entry"); // Damit kein "s" angehängt wird an Tabelle
         }
-        public DbSet<Finances> Finances { get; set; }
+        public DbSet<Entry> Finances { get; set; }
     }
 }
