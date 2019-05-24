@@ -110,37 +110,50 @@ namespace M120Projekt
             enableButtonsIfInput();
         }
 
-        private void Tb_date_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            enableButtonsIfInput();
-        }
-
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            APIDemo.DemoACreate
             try
             {
-                validatePrice();
-                Entry newEntry = new Entry();
-                newEntry.AmountSpent = Convert.ToDouble(tbAmount.Text);
-                newEntry.Currency = cbCurrency.SelectedValue.ToString();
-                newEntry.TitleProduct = tbTitle.Text;
-                newEntry.PaymentMethod = cbPaymentMethod.SelectedValue.ToString();
-                if (String.IsNullOrEmpty(tbDate.Text))
-                {
-                    newEntry.DateTimePurchased = DateTime.Now.ToString();
-                } else
-                {
-                    newEntry.DateTimePurchased = tbDate.Text;
-                }
-                newEntry.Erstellen();
-                warningField.Content = "Saved";
-            }
-            catch (Exception ex)
+                String title = tbTitle.Text;
+                Double amount = Convert.ToDouble(tbAmount.Text);
+                String currency = cbCurrency.SelectedValue.ToString();
+                String pm = cbPaymentMethod.SelectedValue.ToString();
+                DateTime dateTime = String.IsNullOrEmpty(dpDateTime.ToString()) ? DateTime.Now : dpDateTime.SelectedDate.Value;
+                info("Saving...");
+                API.Create(title, amount, currency, pm, dateTime);
+                success("Saved!");
+            } catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex);
+                fail("Failed to save.");
             }
+        }
 
+        private void info(String message)
+        {
+            messageField.Foreground = Brushes.Gray;
+            messageField.Content = message;
+        }
+
+        private void success(String message)
+        {
+            messageField.Foreground = Brushes.Green;
+            messageField.Content = message;
+        }
+
+        private void fail(String message)
+        {
+            messageField.Foreground = Brushes.Red;
+            messageField.Content = message;
+        }
+        private void DpDateTime_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            dpDateTime.IsDropDownOpen = true;
+        }
+
+        private void NewEntryLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -5,96 +5,111 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:M120Projekt"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Visibility="Visible">
+             d:DesignHeight="450" d:DesignWidth="800" Visibility="Hidden">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
         <Border Background="White"
-                        Grid.Column="6"
-                        CornerRadius="10"
-                        Margin="20, 20, 20, 20"
-                        x:Name="lining">
+                Grid.RowSpan="2"
+                CornerRadius="10"
+                Margin="20, 20, 20, 20"
+                x:Name="lining">
             <Border.Effect>
                 <DropShadowEffect
-                                ShadowDepth="5"
-                                Direction="325"
-                                BlurRadius="15"/>
+                    ShadowDepth="5"
+                    Direction="325"
+                    BlurRadius="15"/>
             </Border.Effect>
         </Border>
 
+        <DatePicker x:Name="dpDateTime"
+                    Grid.RowSpan="2"
+                    VerticalAlignment="Bottom"
+                    Background="Transparent"
+                    Width="140"
+                    HorizontalAlignment="Left"
+                    Margin="40, 40, 40, 80" MouseDoubleClick="DpDateTime_MouseDoubleClick">
+        </DatePicker>
+
         <Label Content="New entry"
-                       Grid.Column="6"
-                       HorizontalAlignment="Left"
-                       Margin="40,30,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="22px"
-                       FontWeight="Bold"/>
+               x:Name="newEntryLabel"
+               MouseDoubleClick="NewEntryLabel_MouseDoubleClick"
+               Grid.RowSpan="2"
+               HorizontalAlignment="Left"
+               Margin="40,30,0,0"
+               VerticalAlignment="Top"
+               FontSize="22px"
+               FontWeight="Bold"/>
 
         <Label Content="Title / Description:"
-                       Grid.Column="6"
-                       HorizontalAlignment="Left"
-                       Margin="40,70,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="16px"
-                       FontWeight="DemiBold"/>
+               Grid.RowSpan="2"
+               Grid.Column="6"
+               HorizontalAlignment="Left"
+               Margin="40,70,0,0"
+               VerticalAlignment="Top"
+               FontSize="16px"
+               FontWeight="DemiBold"/>
 
         <TextBox Height="50px"
                  Name="tbTitle"
-                         BorderBrush="LightGray"
-                         Grid.Column="6"
-                         VerticalAlignment="Top"
-                         Margin="45, 100, 45, 0" TextChanged="Tb_title_TextChanged"/>
+                 Grid.RowSpan="2"
+                 BorderBrush="LightGray"
+                 Grid.Column="6"
+                 VerticalAlignment="Top"
+                 Margin="45, 100, 45, 0"
+                 TextChanged="Tb_title_TextChanged"/>
 
         <Label Content="Amount + Currency:"
-                       Grid.Column="6"
-                       HorizontalAlignment="Left"
-                       Margin="40,160,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="16px"
-                       FontWeight="DemiBold"/>
+               Grid.RowSpan="2"
+               Grid.Column="6"
+               HorizontalAlignment="Left"
+               Margin="40,160,0,0"
+               VerticalAlignment="Top"
+               FontSize="16px"
+               FontWeight="DemiBold"/>
 
         <TextBox Height="20"
                  Name="tbAmount"
-                         BorderBrush="LightGray"
-                         Width="100"
-                         Grid.Column="6"
-                         VerticalAlignment="Center"
-                         HorizontalAlignment="Left"
-                         Margin="45, -40, 0, 0" TextChanged="Tb_amount_TextChanged"/>
+                 Grid.RowSpan="2"
+                 BorderBrush="LightGray"
+                 Width="100"
+                 Grid.Column="6"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Margin="45, -40, 0, 0" TextChanged="Tb_amount_TextChanged"/>
 
-        <ComboBox x:Name="cbCurrency" Margin="90, -40, 120, 0" Grid.Column="6" Height="20" Width="60" BorderThickness="0" IsDropDownOpen="False">
+        <ComboBox Grid.RowSpan="2" x:Name="cbCurrency" Margin="90, -40, 120, 0" Grid.Column="6" Height="20" Width="60" BorderThickness="0" IsDropDownOpen="False">
             <ComboBoxItem Content="CHF" Foreground="Black"/>
             <ComboBoxItem Content="EURO" Background="Transparent"/>
             <ComboBoxItem Content="USD" Background="Transparent"/>
         </ComboBox>
 
         <Label Content="Payment Method:"
-                       Grid.Column="6"
-                       HorizontalAlignment="Left"
-                       Margin="40,240,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="16px" FontWeight="DemiBold"/>
+               Grid.RowSpan="2"
+               Grid.Column="6"
+               HorizontalAlignment="Left"
+               Margin="40,240,0,0"
+               VerticalAlignment="Top"
+               FontSize="16px" FontWeight="DemiBold"/>
 
-        <ComboBox Background="White" x:Name="cbPaymentMethod" Margin="45, 120, 120, 0" Grid.Column="6" Height="20" Width="120" HorizontalAlignment="Left" BorderThickness="0" Foreground="Black">
+        <ComboBox Grid.RowSpan="2" Background="White" x:Name="cbPaymentMethod" Margin="45, 120, 120, 0" Grid.Column="6" Height="20" Width="120" HorizontalAlignment="Left" BorderThickness="0" Foreground="Black">
             <ComboBoxItem Content="PayPal"/>
             <ComboBoxItem Content="Mastercard"/>
             <ComboBoxItem Content="Postfinance"/>
         </ComboBox>
 
         <Label Content="Date + Time:"
-                       Grid.Column="6"
-                       HorizontalAlignment="Left"
-                       Margin="40,310,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="16px" FontWeight="DemiBold"/>
+                Grid.RowSpan="2"
+                HorizontalAlignment="Left"
+                Margin="40,310,0,0"
+                VerticalAlignment="Top"
+                FontSize="16px" FontWeight="DemiBold"/>
 
-        <TextBox Height="20"
-                 Name="tbDate"
-                         BorderBrush="LightGray"
-                         Width="100"
-                         VerticalAlignment="Bottom"
-                         HorizontalAlignment="Left"
-                         Margin="45,0,0,84" TextChanged="Tb_date_TextChanged"/>
 
         <Button Height="20"
+                Grid.RowSpan="2"
                 Name="submitBtn"
                 IsEnabled="False"
                 Width="100"
@@ -105,20 +120,19 @@
                 Content="Submit" Click="SubmitBtn_Click"></Button>
 
         <Label x:Name="priceWarningField"
+               Grid.RowSpan="2"
                Content=""
                MaxWidth="120"
                Foreground="Red"
                Grid.Row="1"
-               Grid.Column="1"
                Margin="40, 40, 40, 80"
                HorizontalAlignment="Right"
                VerticalAlignment="Center"></Label>
 
-        <Label x:Name="warningField"
+        <Label x:Name="messageField"
+               Grid.RowSpan="2"
                Content=""
                Foreground="Red"
-               Grid.Row="1"
-               Grid.Column="1"
                Margin="40"
                HorizontalAlignment="Right"
                VerticalAlignment="Bottom"></Label>

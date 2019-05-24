@@ -26,7 +26,8 @@ namespace M120Projekt
 
         public MainWindow()
         {
-
+            InitializeComponent();
+            Data.Global.context = new Data.Context();
         }
 
 
@@ -152,14 +153,7 @@ namespace M120Projekt
 
         private void OpenNewEntryForm_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            openNewEntryForm.Visibility = Visibility.Collapsed;
             newEntryForm.Visibility = Visibility.Visible;
-        }
-
-        private void NewEntryForm_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            openNewEntryForm.Visibility = Visibility.Visible;
-            newEntryForm.Visibility = Visibility.Collapsed;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)

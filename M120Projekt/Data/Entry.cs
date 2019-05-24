@@ -23,7 +23,7 @@ namespace M120Projekt.Data
         [Required]
         public String PaymentMethod { get; set; }
         [Required]
-        public String DateTimePurchased { get; set; }
+        public DateTime DateTimePurchased { get; set; }
         [Required]
         public Boolean Edited { get; set; }
         #endregion
@@ -58,7 +58,7 @@ namespace M120Projekt.Data
             if (this.TitleProduct == null || this.TitleProduct == "") this.TitleProduct = "leer";
             if (this.AmountSpent == 0.00) this.AmountSpent = 1.00;
             if (this.Currency == null || this.Currency == "") this.Currency = "leer";
-            if (this.DateTimePurchased == null) this.DateTimePurchased = DateTime.Now.ToString();
+            if (this.DateTimePurchased == null) this.DateTimePurchased = DateTime.Now;
             Data.Global.context.Finances.Add(this);
             Data.Global.context.SaveChanges();
             return this.EntryID;

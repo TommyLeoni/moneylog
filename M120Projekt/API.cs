@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 
 namespace M120Projekt
 {
-    static class APIDemo
+    static class API
     {
         #region KlasseA
         // Create
-        public static void Create()
+        public static void Create(String title, Double amount, String currency, String pm, DateTime DateTime)
         {
-            Debug.Print("--- DemoACreate ---");
-            // Entry
-            Data.Entry klasseA1 = new Data.Entry();
-            klasseA1.TitleProduct = "Artikel 1";
-            Int64 klasseA1Id = klasseA1.Erstellen();
-            Debug.Print("Artikel erstellt mit Id:" + klasseA1Id);
+            Data.Entry newEntry = new Data.Entry();
+            newEntry.TitleProduct = title;
+            newEntry.AmountSpent = amount;
+            newEntry.Currency = currency;
+            newEntry.PaymentMethod = pm;
+            newEntry.DateTimePurchased = DateTime;
+            newEntry.Edited = false;
+            Int64 newEntryID = newEntry.Erstellen();
+            Debug.Print("Artikel erstellt mit Id:" + newEntryID);
         }
         public static void DemoACreateKurz()
         {
