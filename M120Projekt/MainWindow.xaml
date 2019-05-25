@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M120Projekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1277"
+        Title="MainWindow" Height="600" Width="1200"
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True">
@@ -25,7 +25,6 @@
                 <ColumnDefinition Width="80*"/>
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="40*"/>
                 <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
 
@@ -92,6 +91,11 @@
                        FontSize="25px"
                        FontWeight="Bold"/>
 
+            <Button x:Name="RefreshButton" Height="20" Width="20" Background="Transparent" BorderThickness="0" Grid.Column="3" Margin="60, 0, 0, 200" Click="RefreshButton_Click">
+                <Image Source="images\reload.ico"></Image>
+            </Button>
+            
+            <!-- 
             <Label Content="Title / Description:"
                        Grid.Column="0"
                        HorizontalAlignment="Left"
@@ -131,7 +135,20 @@
                        VerticalAlignment="Top"
                        FontSize="12px"
                        FontWeight="Bold"/>
-
+            -->
+            <ListView x:Name="financesContainer" Grid.ColumnSpan="5" SelectionMode="Single" Height="340" VerticalAlignment="Bottom" Margin="25, 0, 0, 50" Width="750" HorizontalAlignment="Left">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EntryID}" Width="20"/>
+                        <GridViewColumn Header="Title / Product" DisplayMemberBinding="{Binding TitleProduct}" Width="200" />
+                        <GridViewColumn Header="AmountSpent" DisplayMemberBinding="{Binding AmountSpent}" Width="100"/>
+                        <GridViewColumn Header="Currency" DisplayMemberBinding="{Binding Currency}" Width="50"/>
+                        <GridViewColumn Header="Payment method" DisplayMemberBinding="{Binding PaymentMethod}" Width="150"/>
+                        <GridViewColumn Header="Date and time" DisplayMemberBinding="{Binding DateTimePurchased}" Width="150"/>
+                        <GridViewColumn Header="Edited" DisplayMemberBinding="{Binding Edited}" Width="50"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
             <Label x:Name="loadMoreBtn"
                        Content="Click to load more.."
@@ -154,6 +171,7 @@
 
 
             <Button x:Name="deleteBtn"
+                    Click="DeleteBtn_Click"
                         Content="Delete"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"

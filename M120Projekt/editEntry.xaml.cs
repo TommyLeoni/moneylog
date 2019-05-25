@@ -15,14 +15,16 @@ using System.Windows.Shapes;
 namespace M120Projekt
 {
     /// <summary>
-    /// Interaktionslogik für editEntry.xaml
+    /// Interaktionslogik für EditView.xaml
     /// </summary>
-    public partial class editEntry : Window
+    public partial class EditView : Window
     {
         Tools tools = new Tools();
-        public editEntry()
+        private Data.Finances entryToEdit;
+        public EditView(Data.Finances financeEntry)
         {
             InitializeComponent();
+            this.entryToEdit = financeEntry;
         }
         private void initialState()
         {
@@ -45,7 +47,11 @@ namespace M120Projekt
         }
         private void fillInData()
         {
-            // Placeholder for future connection w/ database
+            tbTitle.Text = entryToEdit.TitleProduct;
+            tbAmount.Text = entryToEdit.AmountSpent.ToString();
+            cbCurrency.Text = entryToEdit.Currency;
+            cbPaymentMethod.Text = entryToEdit.PaymentMethod;
+            tbDateTime.Text = entryToEdit.DateTimePurchased.ToString();
         }
         public void enableButtonsIfInput()
         {
@@ -80,7 +86,19 @@ namespace M120Projekt
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                API.Update(entryToEdit.EntryID, 
+                    tbTitle.Text == entryToEdit.TitleProduct ? entryToEdit.TitleProduct : tbTitle.Text.ToString(),
+                    Convert.ToDouble(tbAmount.Text) == entryToEdit.AmountSpent ? entryToEdit.AmountSpent : Convert.ToDouble(tbAmount.Text),
+                    cbCurrency.SelectedValue.ToString() == entryToEdit.Currency ? entryToEdit.Currency : cbCurrency.SelectedValue.ToString(),
+                    cbPaymentMethod.SelectedValue.ToString() == entryToEdit.PaymentMethod ? entryToEdit.PaymentMethod : cbPaymentMethod.SelectedValue.ToString(),
+                    new DateTime());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {

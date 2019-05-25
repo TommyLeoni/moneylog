@@ -116,12 +116,13 @@ namespace M120Projekt
             {
                 String title = tbTitle.Text;
                 Double amount = Convert.ToDouble(tbAmount.Text);
-                String currency = cbCurrency.SelectedValue.ToString();
-                String pm = cbPaymentMethod.SelectedValue.ToString();
+                String currency = cbCurrency.Text;
+                String pm = cbPaymentMethod.Text;
                 DateTime dateTime = String.IsNullOrEmpty(dpDateTime.ToString()) ? DateTime.Now : dpDateTime.SelectedDate.Value;
                 info("Saving...");
                 API.Create(title, amount, currency, pm, dateTime);
                 success("Saved!");
+                Data.Global.mainWindow.refreshFinances();
             } catch (Exception ex)
             {
                 Console.WriteLine(ex);

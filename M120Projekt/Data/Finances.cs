@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace M120Projekt.Data
 {
-    public class Entry
+    public class Finances
     {
         #region Datenbankschicht
         [Key]
@@ -28,7 +28,7 @@ namespace M120Projekt.Data
         public Boolean Edited { get; set; }
         #endregion
         #region Applikationsschicht
-        public Entry() { }
+        public Finances() { }
         [NotMapped]
         public String BerechnetesAttribut
         {
@@ -37,23 +37,23 @@ namespace M120Projekt.Data
                 return "The getter holds code for attributes calculated throughout the duration";
             }
         }
-        public static IEnumerable<Data.Entry> LesenAlle()
+        public static IEnumerable<Data.Finances> ReadAll()
         {
             return (from record in Data.Global.context.Finances select record);
         }
-        public static Data.Entry LesenID(Int64 EntryID)
+        public static Data.Finances ReadID(Int64 EntryID)
         {
             return (from record in Data.Global.context.Finances where record.EntryID == EntryID select record).FirstOrDefault();
         }
-        public static IEnumerable<Data.Entry> LesenAttributGleich(String suchbegriff)
+        public static IEnumerable<Data.Finances> ReadWhereAttribute(String suchbegriff)
         {
             return (from record in Data.Global.context.Finances where record.TitleProduct == suchbegriff select record);
         }
-        public static IEnumerable<Data.Entry> LesenAttributWie(String suchbegriff)
+        public static IEnumerable<Data.Finances> ReadWhereAttributeLike(String suchbegriff)
         {
             return (from record in Data.Global.context.Finances where record.TitleProduct.Contains(suchbegriff) select record);
         }
-        public Int64 Erstellen()
+        public Int64 Create()
         {
             if (this.TitleProduct == null || this.TitleProduct == "") this.TitleProduct = "leer";
             if (this.AmountSpent == 0.00) this.AmountSpent = 1.00;
@@ -63,13 +63,13 @@ namespace M120Projekt.Data
             Data.Global.context.SaveChanges();
             return this.EntryID;
         }
-        public Int64 Aktualisieren()
+        public Int64 Update()
         {
             Data.Global.context.Entry(this).State = System.Data.Entity.EntityState.Modified;
             Data.Global.context.SaveChanges();
             return this.EntryID;
         }
-        public void Loeschen()
+        public void Delete()
         {
             Data.Global.context.Entry(this).State = System.Data.Entity.EntityState.Deleted;
             Data.Global.context.SaveChanges();

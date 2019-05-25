@@ -28,6 +28,8 @@ namespace M120Projekt
         {
             InitializeComponent();
             Data.Global.context = new Data.Context();
+            Data.Global.mainWindow = this;
+            refreshFinances();
         }
 
 
@@ -51,6 +53,14 @@ namespace M120Projekt
                         }
                     }
                 }
+            }
+        }
+        public void refreshFinances()
+        {
+            financesContainer.Items.Clear();
+            foreach (Data.Finances entry in API.ReadAll())
+            {
+                financesContainer.Items.Add(entry);
             }
         }
         private void toggleDarkMode()
@@ -125,32 +135,6 @@ namespace M120Projekt
         {
             toggleDarkMode();
         }
-
-        private void Currency_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Currency_DropDownOpened(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Currency_DropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PaymentMethod_DropDownOpened(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PaymentMethod_DropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
         private void OpenNewEntryForm_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             newEntryForm.Visibility = Visibility.Visible;
@@ -158,8 +142,28 @@ namespace M120Projekt
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            editEntry editWindow = new editEntry();
+            EditView editWindow = new EditView(financesContainer.SelectedItem as Data.Finances);
             editWindow.Show();
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Data.Finances financeEntry = financesContainer.SelectedItem as Data.Finances;
+                Console.WriteLine(financeEntry.EntryID);
+                financeEntry.Delete();
+                refreshFinances();
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.ToString());
+            }
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            refreshFinances();
         }
     }
 }
