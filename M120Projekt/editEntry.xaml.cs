@@ -47,6 +47,7 @@ namespace M120Projekt
         }
         private void fillInData()
         {
+            lblTopTitle.Text = "Edit " + entryToEdit.TitleProduct;
             tbTitle.Text = entryToEdit.TitleProduct;
             tbAmount.Text = entryToEdit.AmountSpent.ToString();
             cbCurrency.Text = entryToEdit.Currency;
@@ -91,9 +92,9 @@ namespace M120Projekt
                 API.Update(entryToEdit.EntryID, 
                     tbTitle.Text == entryToEdit.TitleProduct ? entryToEdit.TitleProduct : tbTitle.Text.ToString(),
                     Convert.ToDouble(tbAmount.Text) == entryToEdit.AmountSpent ? entryToEdit.AmountSpent : Convert.ToDouble(tbAmount.Text),
-                    cbCurrency.SelectedValue.ToString() == entryToEdit.Currency ? entryToEdit.Currency : cbCurrency.SelectedValue.ToString(),
-                    cbPaymentMethod.SelectedValue.ToString() == entryToEdit.PaymentMethod ? entryToEdit.PaymentMethod : cbPaymentMethod.SelectedValue.ToString(),
-                    new DateTime());
+                    cbCurrency.Text == entryToEdit.Currency ? entryToEdit.Currency : cbCurrency.Text,
+                    cbPaymentMethod.Text == entryToEdit.PaymentMethod ? entryToEdit.PaymentMethod : cbPaymentMethod.Text,
+                    DateTime.Now);
             }
             catch (Exception ex)
             {

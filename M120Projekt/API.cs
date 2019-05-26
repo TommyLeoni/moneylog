@@ -27,18 +27,17 @@ namespace M120Projekt
         // Read
         public static IEnumerable<Data.Finances> ReadAll()
         {
-            Debug.Print("--- DemoARead ---");
             return Data.Finances.ReadAll();
         }
         // Update
         public static void Update(long id, String title, Double amount, String currency, String pm, DateTime dateTime)
         {
             Data.Finances entryToUpdate = Data.Finances.ReadID(id);
-            entryToUpdate.TitleProduct = String.IsNullOrEmpty(title) ? entryToUpdate.TitleProduct : title;
-            entryToUpdate.AmountSpent = amount == 0.0 ? entryToUpdate.AmountSpent : amount;
-            entryToUpdate.Currency = String.IsNullOrEmpty(currency) ? entryToUpdate.Currency : currency;
-            entryToUpdate.PaymentMethod = String.IsNullOrEmpty(pm) ? entryToUpdate.PaymentMethod : pm;
-            entryToUpdate.DateTimePurchased = dateTime == null ? entryToUpdate.DateTimePurchased : dateTime;
+            entryToUpdate.TitleProduct = title;
+            entryToUpdate.AmountSpent = amount;
+            entryToUpdate.Currency = currency;
+            entryToUpdate.PaymentMethod = pm;
+            entryToUpdate.DateTimePurchased = dateTime;
             entryToUpdate.Edited = true;
             entryToUpdate.Update();
         }

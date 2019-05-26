@@ -33,11 +33,18 @@
             </Border.Effect>
         </Border>
 
-        <Label Grid.Row="0"
-               Content="Edit {name}"
-               HorizontalAlignment="Center"
+        <TextBlock x:Name="lblTopTitle"
+               Width="Auto"
+               MaxWidth="380"
+               Height="70"
+               Grid.Row="0"
+               Text="Edit {name}"
+                   TextWrapping="WrapWithOverflow"
+               HorizontalAlignment="Left"
+               Margin="25,20,0,0"
+               FontWeight="Bold"
                VerticalAlignment="Center"
-               FontSize="28" Grid.Column="1" Margin="17.52,22,125,22"/>
+               FontSize="22" Grid.ColumnSpan="2"/>
 
         <Button Grid.Column="1" 
                 x:Name="btnClose"
