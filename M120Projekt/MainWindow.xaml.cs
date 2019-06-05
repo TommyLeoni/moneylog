@@ -165,5 +165,10 @@ namespace M120Projekt
         {
             refreshFinances();
         }
+
+        private void FinancesContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

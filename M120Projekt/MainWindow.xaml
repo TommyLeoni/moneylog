@@ -21,11 +21,12 @@
         <Grid Background="Transparent" x:Name="MainCanvas">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160*"/>
-                <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="100*"/>
-                <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="310*"/>
+                <ColumnDefinition Width="155*"/>
+                <ColumnDefinition Width="193*"/>
+                <ColumnDefinition Width="119*"/>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="387*"/>
             </Grid.ColumnDefinitions>
 
             <Border x:Name="dragBar"
@@ -43,7 +44,7 @@
                         Content="Dark mode"
                         Width="130px"
                         FontWeight="Bold"
-                        Margin="-100, 40, 20, 20"
+                        Margin="30,40,150,0"
                         Click="DarkmodeToggle_Click"/>
 
             <Image x:Name="darkmodeIcon"
@@ -51,23 +52,22 @@
                        VerticalAlignment="Top"
                        Height="25px"
                        Width="25px"
-                       Margin="-20, 38, 0, 0"/>
+                       Margin="132,38,152,0"/>
 
             <Label x:Name="appTitle"
                        VerticalAlignment="Top"
                        Content="moneylog"
-                       HorizontalAlignment="Center"
-                       Grid.ColumnSpan="6" 
+                       HorizontalAlignment="Center" 
                        FontSize="32px"
                        FontWeight="Bold"
-                       Margin="0, 50, 70, 0"/>
+                       Margin="19,50,12,0" Grid.Column="2"/>
 
             <Image Source="images\taskbar_logo_jb2_icon.ico"
-                       Grid.ColumnSpan="6"
+                       Grid.ColumnSpan="2"
                        Height="40px"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
-                       Margin="130, 60, 0, 0"/>
+                       Margin="180,60,92,0" Grid.Column="2"/>
 
             <Button Grid.Column="5" 
                         x:Name="CloseButton"
@@ -91,55 +91,14 @@
                        FontSize="25px"
                        FontWeight="Bold"/>
 
-            <Button x:Name="RefreshButton" Height="20" Width="20" Background="Transparent" BorderThickness="0" Grid.Column="3" Margin="60, 0, 0, 200" Click="RefreshButton_Click">
+            <Button x:Name="RefreshButton" Height="20" Width="20" Background="Transparent" BorderThickness="0" Grid.Column="3" Margin="98,190,1,390" Click="RefreshButton_Click">
                 <Image Source="images\reload.ico"></Image>
             </Button>
-            
-            <!-- 
-            <Label Content="Title / Description:"
-                       Grid.Column="0"
-                       HorizontalAlignment="Left"
-                       Margin="25,210,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="12px"
-                       FontWeight="Bold"/>
 
-            <Label Content="Amount + Currency:"
-                       Grid.Column="1"
-                       HorizontalAlignment="Left"
-                       Margin="10,210,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="12px"
-                       FontWeight="Bold"/>
-
-            <Label Content="Payment Method:"
-                       Grid.Column="2"
-                       HorizontalAlignment="Left"
-                       Margin="10,210,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="12px"
-                       FontWeight="Bold"/>
-
-            <Label Content="Date + Time:"
-                       Grid.Column="3"
-                       HorizontalAlignment="Left"
-                       Margin="10,210,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="12px"
-                       FontWeight="Bold"/>
-
-            <Label Content="Edited:"
-                       Grid.Column="4"
-                       HorizontalAlignment="Left"
-                       Margin="10,210,0,0"
-                       VerticalAlignment="Top"
-                       FontSize="12px"
-                       FontWeight="Bold"/>
-            -->
-            <ListView x:Name="financesContainer" Grid.ColumnSpan="5" SelectionMode="Single" Height="340" VerticalAlignment="Bottom" Margin="25, 0, 0, 50" Width="750" HorizontalAlignment="Left">
+            <ListView x:Name="financesContainer" Grid.ColumnSpan="4" SelectionMode="Single" Height="340" VerticalAlignment="Bottom" Margin="25, 0, 0, 50" Width="750" HorizontalAlignment="Left" SelectionChanged="FinancesContainer_SelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EntryID}" Width="20"/>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EntryID}" Width="auto"/>
                         <GridViewColumn Header="Title / Product" DisplayMemberBinding="{Binding TitleProduct}" Width="200" />
                         <GridViewColumn Header="AmountSpent" DisplayMemberBinding="{Binding AmountSpent}" Width="100"/>
                         <GridViewColumn Header="Currency" DisplayMemberBinding="{Binding Currency}" Width="50"/>
@@ -162,7 +121,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         Width="60px"
-                        Margin="40, 0, 0, 25"
+                        Margin="145,0,105,25"
                         BorderThickness="0"
                         Background="Transparent"
                         Foreground="Gray"
@@ -176,7 +135,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         Width="60px"
-                        Margin="200, 0, 0, 25"
+                        Margin="225,0,25,25"
                         BorderThickness="0"
                         Background="Transparent"
                         Foreground="Gray"/>

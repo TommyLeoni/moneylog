@@ -95,6 +95,8 @@ namespace M120Projekt
                     cbCurrency.Text == entryToEdit.Currency ? entryToEdit.Currency : cbCurrency.Text,
                     cbPaymentMethod.Text == entryToEdit.PaymentMethod ? entryToEdit.PaymentMethod : cbPaymentMethod.Text,
                     DateTime.Now);
+                this.Close();
+                Data.Global.mainWindow.refreshFinances();
             }
             catch (Exception ex)
             {
