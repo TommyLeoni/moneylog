@@ -140,8 +140,8 @@
                         Background="Transparent"
                         Foreground="Gray"/>
 
-            <local:openNewEntryForm x:Name="openNewEntryForm" Grid.Column="5" HorizontalAlignment="Left" Height="100" Margin="0,142,0,0" VerticalAlignment="Top" Width="377" MouseDoubleClick="OpenNewEntryForm_MouseDoubleClick"/>
-            <local:newEntryForm x:Name="newEntryForm" Grid.Column="5" HorizontalAlignment="Left" Height="458" VerticalAlignment="Top" Width="377" Margin="0,142,0,0"/>
+            <local:OpenNewEntryForm x:Name="openNewEntryForm" Grid.Column="5" HorizontalAlignment="Left" Height="100" Margin="0,323,0,0" VerticalAlignment="Top" Width="377" MouseDoubleClick="OpenNewEntryForm_MouseDoubleClick"/>
+            <local:NewEntryForm x:Name="newEntryForm" Grid.Column="5" HorizontalAlignment="Left" Height="458" VerticalAlignment="Top" Width="377" Margin="0,142,0,0"/>
         </Grid>
     </Border>
 </Window>

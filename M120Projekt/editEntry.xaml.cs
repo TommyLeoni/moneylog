@@ -25,6 +25,7 @@ namespace M120Projekt
         {
             InitializeComponent();
             this.entryToEdit = financeEntry;
+            Data.Global.editView = this;
         }
         private void initialState()
         {

@@ -16,14 +16,15 @@ using System.Windows.Shapes;
 namespace M120Projekt
 {
     /// <summary>
-    /// Interaktionslogik für openNewEntryForm.xaml
+    /// Interaktionslogik für OpenNewEntryForm.xaml
     /// </summary>
-    public partial class openNewEntryForm : UserControl
+    public partial class OpenNewEntryForm : UserControl
     {
         Tools tools = new Tools();
-        public openNewEntryForm()
+        public OpenNewEntryForm()
         {
             InitializeComponent();
+            Data.Global.openNewEntryForm = this;
         }
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {

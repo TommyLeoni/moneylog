@@ -10,5 +10,8 @@ namespace M120Projekt.Data
     {
         public static Data.Context context;
         public static MainWindow mainWindow;
+        public static NewEntryForm newEntryForm;
+        public static EditView editView;
+        public static OpenNewEntryForm openNewEntryForm;
     }
 }

@@ -20,13 +20,14 @@ namespace M120Projekt
     /// <summary>
     /// Interaktionslogik für newEntryForm.xaml
     /// </summary>
-    public partial class newEntryForm : UserControl
+    public partial class NewEntryForm : UserControl
     {
         private Tools tools = new Tools();
         private Brush darkBrush = new SolidColorBrush(Color.FromArgb(255, 28, 40, 43));
-        public newEntryForm()
+        public NewEntryForm()
         {
             InitializeComponent();
+            Data.Global.newEntryForm = this;
         }
 
         public void enableDarkMode()
@@ -163,14 +164,15 @@ namespace M120Projekt
             dpDateTime.IsDropDownOpen = true;
         }
 
-        private void NewEntryLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            this.Visibility = Visibility.Collapsed;
-        }
-
         private void DpDateTime_CalendarClosed(object sender, RoutedEventArgs e)
         {
             enableButtonsIfInput();
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+            Data.Global.openNewEntryForm.Visibility = Visibility.Visible;
         }
     }
 }

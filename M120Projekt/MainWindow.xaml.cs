@@ -138,12 +138,20 @@ namespace M120Projekt
         private void OpenNewEntryForm_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             newEntryForm.Visibility = Visibility.Visible;
+            Data.Global.openNewEntryForm.Visibility = Visibility.Collapsed;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            EditView editWindow = new EditView(financesContainer.SelectedItem as Data.Finances);
-            editWindow.Show();
+            if (financesContainer.SelectedIndex != -1)
+            {
+                EditView editWindow = new EditView(financesContainer.SelectedItem as Data.Finances);
+                editWindow.Show();
+            }
+            else
+            {
+                Console.WriteLine("No entry selected");
+            }
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)

@@ -61,11 +61,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="editEntry.xaml.cs">
-      <DependentUpon>editEntry.xaml</DependentUpon>
+    <Compile Include="EditEntry.xaml.cs">
+      <DependentUpon>EditEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools.cs" />
-    <Page Include="editEntry.xaml">
+    <Page Include="EditEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -85,22 +85,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="newEntryForm.xaml">
+    <Page Include="NewEntryForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="openNewEntryForm.xaml">
+    <Page Include="OpenNewEntryForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="newEntryForm.xaml.cs">
-      <DependentUpon>newEntryForm.xaml</DependentUpon>
+    <Compile Include="NewEntryForm.xaml.cs">
+      <DependentUpon>NewEntryForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="openNewEntryForm.xaml.cs">
-      <DependentUpon>openNewEntryForm.xaml</DependentUpon>
+    <Compile Include="OpenNewEntryForm.xaml.cs">
+      <DependentUpon>OpenNewEntryForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
