@@ -141,5 +141,9 @@
   <ItemGroup>
     <Resource Include="images\reload.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\close.ico" />
+    <Resource Include="images\settings.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

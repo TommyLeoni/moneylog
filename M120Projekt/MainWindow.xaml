@@ -8,7 +8,7 @@
         Title="MainWindow" Height="600" Width="1200"
         Background="Transparent"
         WindowStyle="None"
-        AllowsTransparency="True">
+        AllowsTransparency="True" Closed="Window_Closed">
 
     <Border Background="White"
                 CornerRadius="10"
@@ -72,16 +72,32 @@
             <Button Grid.Column="5" 
                         x:Name="CloseButton"
                         Foreground="Black"
-                        Content="x"
                         FontSize="14px"
                         Click="CloseButton_Click"
-                        Height="20"
+                        Height="25"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        Width="20"
+                        Width="25"
                         Margin="0, 10, 10, 0"
                         Background="Transparent"
-                        BorderThickness="0"/>
+                        BorderThickness="0">
+                <Image Source="images\close.ico"></Image>
+            </Button>
+
+            <Button Grid.Column="5" 
+                        x:Name="SettingsButton"
+                        Foreground="Black"
+                        FontSize="14px"
+                        Click="CloseButton_Click"
+                        Height="25"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Width="25"
+                        Margin="0, 11, 40, 0"
+                        Background="Transparent"
+                        BorderThickness="0">
+                <Image Source="images\settings.ico"></Image>
+            </Button>
 
             <Label Content="Your recent expenses"
                        Grid.Column="0"
@@ -109,11 +125,14 @@
                 </ListView.View>
             </ListView>
 
-            <Label x:Name="loadMoreBtn"
+            <Button x:Name="LoadMoreBtn"
+                    Background="Transparent"
+                    Click="LoadMoreBtn_Click"
+                    BorderThickness="0"
                        Content="Click to load more.."
                        HorizontalAlignment="Left"
                        VerticalAlignment="Bottom"
-                       Margin="20, 0, 0, 20"
+                       Margin="20,0,0,25"
                        Foreground="Gray"/>
 
             <Button x:Name="editBtn"

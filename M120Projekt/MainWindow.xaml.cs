@@ -143,25 +143,40 @@ namespace M120Projekt
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (financesContainer.SelectedIndex != -1)
+            try
             {
-                EditView editWindow = new EditView(financesContainer.SelectedItem as Data.Finances);
-                editWindow.Show();
+                if (financesContainer.SelectedIndex != -1)
+                {
+                    EditView editWindow = new EditView(financesContainer.SelectedItem as Data.Finances);
+                    editWindow.Show();
+                }
+                else
+                {
+                    Console.WriteLine("No entry selected");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("No entry selected");
+                Debug.Print(ex.ToString());
             }
+
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Data.Finances financeEntry = financesContainer.SelectedItem as Data.Finances;
-                Console.WriteLine(financeEntry.EntryID);
-                financeEntry.Delete();
-                refreshFinances();
+                if (financesContainer.SelectedIndex != -1)
+                {
+                    Data.Finances financeEntry = financesContainer.SelectedItem as Data.Finances;
+                    Console.WriteLine(financeEntry.EntryID);
+                    financeEntry.Delete();
+                    refreshFinances();
+                }
+                else
+                {
+                    Console.WriteLine("No entry selected");
+                }
             }
             catch (Exception ex)
             {
@@ -175,6 +190,17 @@ namespace M120Projekt
         }
 
         private void FinancesContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+            Console.WriteLine("Saving settings ...");
+        }
+
+        private void LoadMoreBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
