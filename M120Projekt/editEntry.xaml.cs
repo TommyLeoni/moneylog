@@ -27,6 +27,7 @@ namespace M120Projekt
             this.entryToEdit = financeEntry;
             Data.Global.editView = this;
         }
+        public EditView() {}
         private void initialState()
         {
             fillInData();

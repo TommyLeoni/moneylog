@@ -34,75 +34,104 @@ namespace M120Projekt
                 }
             }
         }
-
-        public void enableDarkMode(DependencyObject dependencyObject)
+        public IEnumerable<T> FindAllVisualChildren<T>() where T : DependencyObject
         {
-            foreach (Label l in FindVisualChildren<Label>(dependencyObject).ToList())
+            foreach (DependencyObject obj in getAllDependencyObjects())
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+                    else
+                    {
+                        var childOfChild = FindVisualChildren<T>(child);
+                        if (childOfChild != null)
+                        {
+                            foreach (var subchild in childOfChild)
+                            {
+                                yield return subchild;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void enableDarkMode()
+        {
+            foreach (Label l in FindAllVisualChildren<Label>())
             {
                 l.Foreground = Brushes.White;
+                l.Background = Brushes.Transparent;
             }
-
-            foreach (Button b in FindVisualChildren<Button>(dependencyObject).ToList())
+            foreach (Button b in FindAllVisualChildren<Button>())
             {
                 b.Foreground = Brushes.White;
                 b.Background = darkBrush;
             }
-
-            foreach (Border bor in FindVisualChildren<Border>(dependencyObject).ToList())
+            foreach (Border bor in FindAllVisualChildren<Border>())
             {
                 bor.Background = darkBrush;
             }
-
-            foreach (ComboBox com in FindVisualChildren<ComboBox>(dependencyObject).ToList())
+            foreach (TextBox tb in FindAllVisualChildren<TextBox>())
+            {
+                tb.Foreground = Brushes.White;
+                tb.Background = darkBrush;
+            }
+            foreach (ComboBox com in FindAllVisualChildren<ComboBox>())
             {
                 com.Foreground = Brushes.White;
                 com.Background = darkBrush;
             }
-
-            foreach (Label l in FindVisualChildren<Label>(dependencyObject).ToList())
-            {
-                l.Foreground = Brushes.White;
-            }
-            foreach (TextBox tb in FindVisualChildren<TextBox>(dependencyObject).ToList())
-            {
-                tb.Background = darkBrush;
-                tb.Foreground = Brushes.White;
-            }
+            Data.Global.mainWindow.IDHeader.Foreground = Brushes.White;
+            Data.Global.mainWindow.IDHeader.Background = darkBrush;
+            Data.Global.mainWindow.financesContainer.Foreground = Brushes.White;
+            Data.Global.mainWindow.MainLining.Background = darkBrush;
         }
 
-        public void disableDarkMode(DependencyObject dependencyObject)
+        public void disableDarkMode()
         {
-            foreach (Label l in FindVisualChildren<Label>(dependencyObject).ToList())
+            foreach (Label l in FindAllVisualChildren<Label>())
             {
-                l.Foreground = Brushes.Black;
+                l.Foreground = darkBrush;
+                l.Background = Brushes.Transparent;
             }
-
-            foreach (Button b in FindVisualChildren<Button>(dependencyObject).ToList())
+            foreach (Button b in FindAllVisualChildren<Button>())
             {
                 b.Foreground = darkBrush;
-                b.Background = Brushes.LightGray;
+                b.Background = Brushes.White;
+                b.BorderBrush = Brushes.Transparent;
             }
-
-            foreach (Border bor in FindVisualChildren<Border>(dependencyObject).ToList())
+            foreach (Border bor in FindAllVisualChildren<Border>())
             {
                 bor.Background = Brushes.White;
             }
-
-            foreach (ComboBox com in FindVisualChildren<ComboBox>(dependencyObject).ToList())
-            {
-                com.Foreground = Brushes.Black;
-                com.Background = Brushes.White;
-            }
-
-            foreach (Label l in FindVisualChildren<Label>(dependencyObject).ToList())
-            {
-                l.Foreground = darkBrush;
-            }
-
-            foreach (TextBox tb in FindVisualChildren<TextBox>(dependencyObject).ToList())
+            foreach (TextBox tb in FindAllVisualChildren<TextBox>())
             {
                 tb.Background = Brushes.White;
+                tb.Foreground = darkBrush;
             }
+            foreach (ComboBox com in FindAllVisualChildren<ComboBox>())
+            {
+                com.Foreground = darkBrush;
+                com.Background = Brushes.White;
+            }
+            Data.Global.mainWindow.IDHeader.Foreground = darkBrush;
+            Data.Global.mainWindow.IDHeader.Background = Brushes.White;
+            Data.Global.mainWindow.financesContainer.Foreground = darkBrush;
+            Data.Global.mainWindow.MainLining.Background = Brushes.White;
+        }
+        public List<DependencyObject> getAllDependencyObjects()
+        {
+            return new List<DependencyObject>() {
+                Data.Global.editView,
+                Data.Global.newEntryForm,
+                Data.Global.mainWindow.MainCanvas,
+                Data.Global.openNewEntryForm.Container
+            };
         }
     }
 }

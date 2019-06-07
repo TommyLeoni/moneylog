@@ -20,25 +20,9 @@ namespace M120Projekt
     /// </summary>
     public partial class OpenNewEntryForm : UserControl
     {
-        Tools tools = new Tools();
         public OpenNewEntryForm()
         {
             InitializeComponent();
-            Data.Global.openNewEntryForm = this;
-        }
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-        public void enableDarkMode()
-        {
-            lining.Background = tools.darkBrush;
-            tools.enableDarkMode(this);
-        }
-        public void disableDarkMode()
-        {
-            lining.Background = Brushes.White;
-            tools.disableDarkMode(this);
         }
     }
 }

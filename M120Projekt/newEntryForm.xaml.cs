@@ -33,13 +33,13 @@ namespace M120Projekt
         public void enableDarkMode()
         {
             lining.Background = darkBrush;
-            tools.enableDarkMode(this);
+            tools.enableDarkMode();
         }
 
         public void disableDarkMode()
         {
             lining.Background = Brushes.White;
-            tools.disableDarkMode(this);
+            tools.disableDarkMode();
         }
 
         public void enableButtons()
@@ -98,7 +98,7 @@ namespace M120Projekt
                     priceWarningField.Content = "Invalid format!\nOnly use a divider\nif necessary";
                     return false;
                 }
-            } catch (Exception eo) {}
+            } catch (Exception eo) { Console.WriteLine(eo.ToString());  }
             return false;
 
         }

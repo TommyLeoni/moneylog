@@ -10,9 +10,7 @@
         WindowStyle="None"
         AllowsTransparency="True" Closed="Window_Closed">
 
-    <Border Background="White"
-                CornerRadius="10"
-                x:Name="mainLining">
+    <Border Background="White" CornerRadius="10" x:Name="MainLining">
 
         <Border.Effect>
             <DropShadowEffect />
@@ -110,12 +108,17 @@
             <Button x:Name="RefreshButton" Height="20" Width="20" Background="Transparent" BorderThickness="0" Grid.Column="3" Margin="98,190,1,390" Click="RefreshButton_Click">
                 <Image Source="images\reload.ico"></Image>
             </Button>
-
-            <ListView x:Name="financesContainer" Grid.ColumnSpan="4" SelectionMode="Single" Height="340" VerticalAlignment="Bottom" Margin="25, 0, 0, 50" Width="750" HorizontalAlignment="Left" SelectionChanged="FinancesContainer_SelectionChanged">
+            
+            <Grid Grid.ColumnSpan="6" x:Name="entryGrid">
+                <ListView x:Name="financesContainer" Foreground="Black" Background="Transparent" Grid.ColumnSpan="4" SelectionMode="Single" Height="340" VerticalAlignment="Bottom" Margin="25, 0, 0, 50" Width="750" HorizontalAlignment="Left" SelectionChanged="FinancesContainer_SelectionChanged">
                 <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EntryID}" Width="auto"/>
-                        <GridViewColumn Header="Title / Product" DisplayMemberBinding="{Binding TitleProduct}" Width="200" />
+                    <GridView x:Name="entryView">
+                        <GridViewColumn DisplayMemberBinding="{Binding EntryID}" Width="auto">
+                            <GridViewColumnHeader Background="Transparent" x:Name="IDHeader" Content="ID" BorderThickness="0"/>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding TitleProduct}" Width="200">
+                            <GridViewColumnHeader Background="Transparent" x:Name="TitleProductHeader" Content="Title / Product" BorderThickness="0"/>
+                        </GridViewColumn>
                         <GridViewColumn Header="AmountSpent" DisplayMemberBinding="{Binding AmountSpent}" Width="100"/>
                         <GridViewColumn Header="Currency" DisplayMemberBinding="{Binding Currency}" Width="50"/>
                         <GridViewColumn Header="Payment method" DisplayMemberBinding="{Binding PaymentMethod}" Width="150"/>
@@ -124,7 +127,8 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-
+            </Grid>
+            
             <Button x:Name="LoadMoreBtn"
                     Background="Transparent"
                     Click="LoadMoreBtn_Click"

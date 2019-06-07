@@ -21,39 +21,20 @@ namespace M120Projekt
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Tools tools = new Tools();
         private Boolean isDark = false;
+        private Tools tools = new Tools();
+        private EditView editView = new EditView();
+        private Brush darkBrush = new SolidColorBrush(Color.FromArgb(255, 28, 40, 43));
 
         public MainWindow()
         {
             InitializeComponent();
             Data.Global.context = new Data.Context();
             Data.Global.mainWindow = this;
+            Data.Global.openNewEntryForm = this.openNewEntryForm;
+            Data.Global.newEntryForm = this.newEntryForm;
+            Data.Global.editView = this.editView;
             refreshFinances();
-        }
-
-
-        private IEnumerable<T> FindVisualChildren<T>(DependencyObject obj) where T : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is T)
-                {
-                    yield return (T)child;
-                }
-                else
-                {
-                    var childOfChild = FindVisualChildren<T>(child);
-                    if (childOfChild != null)
-                    {
-                        foreach (var subchild in childOfChild)
-                        {
-                            yield return subchild;
-                        }
-                    }
-                }
-            }
         }
         public void refreshFinances()
         {
@@ -65,59 +46,17 @@ namespace M120Projekt
         }
         private void toggleDarkMode()
         {
-            Brush darkBrush = new SolidColorBrush(Color.FromArgb(255, 28, 40, 43));
-
             if (!isDark)
             {
                 isDark = true;
                 darkmodeIcon.Source = new BitmapImage(new Uri(@"images/switch_on_icon.ico", UriKind.Relative));
-                tools.enableDarkMode(newEntryForm);
-                tools.enableDarkMode(openNewEntryForm);
-                tools.enableDarkMode(MainCanvas);
-                mainLining.Background = darkBrush;
-
-                /* foreach (Label l in FindVisualChildren<Label>(mainCanvas).ToList())
-                {
-                    l.Foreground = Brushes.White;
-                }
-
-                foreach (Button b in FindVisualChildren<Button>(mainCanvas).ToList())
-                {
-                    b.Foreground = Brushes.White;
-                }
-
-                foreach (Border bor in FindVisualChildren<Border>(mainCanvas).ToList().Concat(FindVisualChildren<Border>(entryContainer)))
-                {
-                    bor.Background = darkBrush;
-                }
-
-                foreach (ComboBox com in FindVisualChildren<ComboBox>(entryContainer).ToList())
-                {
-                    com.Foreground = Brushes.White;
-                    com.Background = darkBrush;
-                } */
+                tools.enableDarkMode();
             }
             else
             {
                 isDark = false;
                 darkmodeIcon.Source = new BitmapImage(new Uri(@"images/switch_off_icon.ico", UriKind.Relative));
-                newEntryForm.disableDarkMode();
-                openNewEntryForm.disableDarkMode();
-
-                /* foreach (Label l in FindVisualChildren<Label>(mainCanvas).ToList())
-                {
-                    l.Foreground = Brushes.Black;
-                }
-
-                foreach (Button b in FindVisualChildren<Button>(mainCanvas).ToList())
-                {
-                    b.Foreground = darkBrush;
-                }
-
-                foreach (Border bor in FindVisualChildren<Border>(mainCanvas).ToList().Concat(FindVisualChildren<Border>(entryContainer)))
-                {
-                    bor.Background = Brushes.White;
-                } */
+                tools.disableDarkMode();
             }
         }
 
@@ -128,7 +67,7 @@ namespace M120Projekt
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void DarkmodeToggle_Click(object sender, RoutedEventArgs e)
@@ -147,8 +86,9 @@ namespace M120Projekt
             {
                 if (financesContainer.SelectedIndex != -1)
                 {
-                    EditView editWindow = new EditView(financesContainer.SelectedItem as Data.Finances);
-                    editWindow.Show();
+                    editView = new EditView(financesContainer.SelectedItem as Data.Finances);
+                    Data.Global.editView = editView;
+                    editView.Show();
                 }
                 else
                 {
