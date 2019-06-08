@@ -90,6 +90,10 @@ namespace M120Projekt
             Data.Global.mainWindow.IDHeader.Background = darkBrush;
             Data.Global.mainWindow.financesContainer.Foreground = Brushes.White;
             Data.Global.mainWindow.MainLining.Background = darkBrush;
+            foreach (GridViewColumnHeader gridViewColumnHeader in FindVisualChildren<GridViewColumnHeader>(Data.Global.mainWindow.entryView))
+            {
+                gridViewColumnHeader.Background = darkBrush;
+            }
         }
 
         public void disableDarkMode()
@@ -123,6 +127,10 @@ namespace M120Projekt
             Data.Global.mainWindow.IDHeader.Background = Brushes.White;
             Data.Global.mainWindow.financesContainer.Foreground = darkBrush;
             Data.Global.mainWindow.MainLining.Background = Brushes.White;
+            foreach (GridViewColumnHeader gridViewColumnHeader in FindVisualChildren<GridViewColumnHeader>(Data.Global.mainWindow.entryView))
+            {
+                gridViewColumnHeader.Background = Brushes.White;
+            }
         }
         public List<DependencyObject> getAllDependencyObjects()
         {
