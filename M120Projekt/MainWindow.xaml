@@ -6,9 +6,16 @@
         xmlns:local="clr-namespace:M120Projekt"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1200"
+        Icon="images/taskbar_logo_jb2_icon.ico"
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True" Closed="Window_Closed">
+    
+    <Window.Resources>
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </Window.Resources>
 
     <Border Background="White" CornerRadius="10" x:Name="MainLining">
 
@@ -79,7 +86,8 @@
                         Margin="0, 10, 10, 0"
                         Background="Transparent"
                         BorderThickness="0">
-                <Image Source="images\close.ico"></Image>
+                <Image Source="images\close.ico" x:Name="CloseButtonIcon">
+                </Image>
             </Button>
 
             <Button Grid.Column="5" 
@@ -94,7 +102,8 @@
                         Margin="0, 11, 40, 0"
                         Background="Transparent"
                         BorderThickness="0">
-                <Image Source="images\settings.ico"></Image>
+                <Image Source="images\settings.ico" x:Name="SettingsButtonIcon">
+                </Image>
             </Button>
 
             <Label Content="Your recent expenses"
@@ -106,24 +115,21 @@
                        FontWeight="Bold"/>
 
             <Button x:Name="RefreshButton" Height="20" Width="20" Background="Transparent" BorderThickness="0" Grid.Column="3" Margin="98,190,1,390" Click="RefreshButton_Click">
-                <Image Source="images\reload.ico"></Image>
+                <Image Source="images\reload.ico" x:Name="RefreshButtonIcon">
+                </Image>
             </Button>
-            
+
             <Grid Grid.ColumnSpan="6" x:Name="entryGrid">
-                <ListView x:Name="financesContainer" Foreground="Black" Background="Transparent" Grid.ColumnSpan="4" SelectionMode="Single" Height="340" VerticalAlignment="Bottom" Margin="25, 0, 0, 50" Width="750" HorizontalAlignment="Left" SelectionChanged="FinancesContainer_SelectionChanged">
+                <ListView x:Name="financesContainer" Foreground="Black" Background="Transparent" Grid.ColumnSpan="4" SelectionMode="Single" Height="300" VerticalAlignment="Bottom" BorderThickness="0" Margin="25, 0, 0, 50" Width="750" HorizontalAlignment="Left">
                 <ListView.View>
-                    <GridView x:Name="entryView">
-                        <GridViewColumn DisplayMemberBinding="{Binding EntryID}" Width="auto">
-                            <GridViewColumnHeader Background="Transparent" x:Name="IDHeader" Content="ID" BorderThickness="0"/>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding TitleProduct}" Width="200">
-                            <GridViewColumnHeader Background="Transparent" x:Name="TitleProductHeader" Content="Title / Product" BorderThickness="0"/>
-                        </GridViewColumn>
-                        <GridViewColumn Header="AmountSpent" DisplayMemberBinding="{Binding AmountSpent}" Width="100"/>
-                        <GridViewColumn Header="Currency" DisplayMemberBinding="{Binding Currency}" Width="50"/>
-                        <GridViewColumn Header="Payment method" DisplayMemberBinding="{Binding PaymentMethod}" Width="150"/>
-                        <GridViewColumn Header="Date and time" DisplayMemberBinding="{Binding DateTimePurchased}" Width="150"/>
-                        <GridViewColumn Header="Edited" DisplayMemberBinding="{Binding Edited}" Width="50"/>
+                    <GridView x:Name="entryView" ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn DisplayMemberBinding="{Binding EntryID}" Width="auto"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding TitleProduct}" Width="220"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding AmountSpent}" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Currency}" Width="50"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding PaymentMethod}" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding DateTimePurchased}" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Edited}" Width="40"/>
                     </GridView>
                 </ListView.View>
             </ListView>

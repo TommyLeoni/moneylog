@@ -21,17 +21,19 @@ namespace M120Projekt
     {
         Tools tools = new Tools();
         private Data.Finances entryToEdit;
-        public EditView(Data.Finances financeEntry)
+        public EditView()
         {
             InitializeComponent();
-            this.entryToEdit = financeEntry;
             Data.Global.editView = this;
         }
-        public EditView() {}
         private void initialState()
         {
             fillInData();
             disableButtons();
+        }
+        public void setEntry(Data.Finances entry)
+        {
+            this.entryToEdit = entry;
         }
         private void disableButtons()
         {
@@ -49,7 +51,7 @@ namespace M120Projekt
         }
         private void fillInData()
         {
-            lblTopTitle.Text = "Edit " + entryToEdit.TitleProduct;
+            lblTopTitle.Text = "Edit '" + entryToEdit.TitleProduct + "'";
             tbTitle.Text = entryToEdit.TitleProduct;
             tbAmount.Text = entryToEdit.AmountSpent.ToString();
             cbCurrency.Text = entryToEdit.Currency;
@@ -98,6 +100,7 @@ namespace M120Projekt
                     cbPaymentMethod.Text == entryToEdit.PaymentMethod ? entryToEdit.PaymentMethod : cbPaymentMethod.Text,
                     DateTime.Now);
                 this.Close();
+                Data.Global.editView = new EditView();
                 Data.Global.mainWindow.refreshFinances();
             }
             catch (Exception ex)

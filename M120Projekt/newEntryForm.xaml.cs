@@ -19,6 +19,11 @@ namespace M120Projekt
         {
             InitializeComponent();
             Data.Global.newEntryForm = this;
+            foreach (String s in Properties.Settings.Default.paymentMethods)
+            {
+                cbPaymentMethod.Items.Add(s);
+                Console.WriteLine(s);
+            }
         }
 
         public void enableDarkMode()
@@ -150,10 +155,6 @@ namespace M120Projekt
             messageField.Foreground = Brushes.Red;
             messageField.Content = message;
         }
-        private void DpDateTime_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            dpDateTime.IsDropDownOpen = true;
-        }
 
         private void DpDateTime_CalendarClosed(object sender, RoutedEventArgs e)
         {
@@ -164,6 +165,25 @@ namespace M120Projekt
         {
             this.Visibility = Visibility.Collapsed;
             Data.Global.openNewEntryForm.Visibility = Visibility.Visible;
+        }
+
+        private void DpDateTime_MouseEnter(object sender, MouseEventArgs e)
+        {
+            dpDateTime.IsDropDownOpen = true;
+        }
+
+        private void DpDateTime_MouseLeave(object sender, MouseEventArgs e)
+        {
+            dpDateTime.IsDropDownOpen = false;
+        }
+
+        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (!dpDateTime.IsDropDownOpen)
+            {
+                this.Visibility = Visibility.Collapsed;
+                Data.Global.mainWindow.openNewEntryForm.Visibility = Visibility.Visible;
+            }
         }
     }
 }

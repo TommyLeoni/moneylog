@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Collections.Generic;
 
 namespace M120Projekt
 {
@@ -30,8 +31,9 @@ namespace M120Projekt
         }
         public void refreshFinances()
         {
+            IEnumerable<Data.Finances> refreshedEntries = API.ReadAll();
             financesContainer.Items.Clear();
-            foreach (Data.Finances entry in API.ReadAll())
+            foreach (Data.Finances entry in refreshedEntries)
             {
                 financesContainer.Items.Add(entry);
             }
@@ -78,9 +80,8 @@ namespace M120Projekt
             {
                 if (financesContainer.SelectedIndex != -1)
                 {
-                    editView = new EditView(financesContainer.SelectedItem as Data.Finances);
-                    Data.Global.editView = editView;
-                    editView.Show();
+                    Data.Global.editView.setEntry(financesContainer.SelectedItem as Data.Finances);
+                    Data.Global.editView.Show();
                 }
                 else
                 {
@@ -121,20 +122,20 @@ namespace M120Projekt
             refreshFinances();
         }
 
-        private void FinancesContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Window_Closed(object sender, EventArgs e)
         {
             Properties.Settings.Default.Save();
-            Console.WriteLine("Saving settings ...");
         }
 
         private void LoadMoreBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void OpenNewEntryForm_MouseEnter(object sender, MouseEventArgs e)
+        {
+            openNewEntryForm.Visibility = Visibility.Collapsed;
+            newEntryForm.Visibility = Visibility.Visible;
         }
     }
 }

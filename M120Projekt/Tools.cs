@@ -86,14 +86,15 @@ namespace M120Projekt
                 com.Foreground = Brushes.White;
                 com.Background = darkBrush;
             }
-            Data.Global.mainWindow.IDHeader.Foreground = Brushes.White;
-            Data.Global.mainWindow.IDHeader.Background = darkBrush;
-            Data.Global.mainWindow.financesContainer.Foreground = Brushes.White;
-            Data.Global.mainWindow.MainLining.Background = darkBrush;
-            foreach (GridViewColumnHeader gridViewColumnHeader in FindVisualChildren<GridViewColumnHeader>(Data.Global.mainWindow.entryView))
+            foreach (TextBlock tb in FindAllVisualChildren<TextBlock>())
             {
-                gridViewColumnHeader.Background = darkBrush;
+                tb.Foreground = Brushes.White;
             }
+            Data.Global.mainWindow.MainLining.Background = darkBrush;
+            Data.Global.mainWindow.financesContainer.Foreground = Brushes.White;
+            Data.Global.mainWindow.CloseButtonIcon.Effect = new InvertEffect();
+            Data.Global.mainWindow.SettingsButtonIcon.Effect = new InvertEffect();
+            Data.Global.mainWindow.RefreshButtonIcon.Effect = new InvertEffect();
         }
 
         public void disableDarkMode()
@@ -123,21 +124,23 @@ namespace M120Projekt
                 com.Foreground = darkBrush;
                 com.Background = Brushes.White;
             }
-            Data.Global.mainWindow.IDHeader.Foreground = darkBrush;
-            Data.Global.mainWindow.IDHeader.Background = Brushes.White;
-            Data.Global.mainWindow.financesContainer.Foreground = darkBrush;
-            Data.Global.mainWindow.MainLining.Background = Brushes.White;
-            foreach (GridViewColumnHeader gridViewColumnHeader in FindVisualChildren<GridViewColumnHeader>(Data.Global.mainWindow.entryView))
+            foreach (TextBlock tb in FindAllVisualChildren<TextBlock>())
             {
-                gridViewColumnHeader.Background = Brushes.White;
+                tb.Foreground = darkBrush;
             }
+            Data.Global.mainWindow.MainLining.Background = Brushes.White;
+            Data.Global.mainWindow.financesContainer.Foreground = darkBrush;
+            Data.Global.mainWindow.CloseButtonIcon.Effect = null;
+            Data.Global.mainWindow.SettingsButtonIcon.Effect = null;
+            Data.Global.mainWindow.RefreshButtonIcon.Effect = null;
         }
         public List<DependencyObject> getAllDependencyObjects()
         {
             return new List<DependencyObject>() {
-                Data.Global.editView,
                 Data.Global.newEntryForm,
+                Data.Global.editView.MainGrid,
                 Data.Global.mainWindow.MainCanvas,
+                Data.Global.newEntryForm.MainGrid,
                 Data.Global.openNewEntryForm.Container
             };
         }

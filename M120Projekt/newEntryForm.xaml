@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:M120Projekt"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Visibility="Hidden" MouseDoubleClick="UserControl_MouseDoubleClick">
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
@@ -30,7 +30,7 @@
                     Background="Transparent"
                     Width="140"
                     HorizontalAlignment="Left"
-                    Margin="40, 40, 40, 80" MouseDoubleClick="DpDateTime_MouseDoubleClick" CalendarClosed="DpDateTime_CalendarClosed">
+                    Margin="40, 40, 40, 80" MouseEnter="DpDateTime_MouseEnter" MouseLeave="DpDateTime_MouseLeave" CalendarClosed="DpDateTime_CalendarClosed">
         </DatePicker>
 
         <Label Content="New entry"
@@ -79,7 +79,7 @@
                  HorizontalAlignment="Left"
                  Margin="45, -40, 0, 0" TextChanged="Tb_amount_TextChanged"/>
 
-        <ComboBox Grid.RowSpan="2" x:Name="cbCurrency" Margin="90, -40, 120, 0" Grid.Column="6" Height="20" Width="60" BorderThickness="0" IsDropDownOpen="False">
+        <ComboBox x:Name="cbCurrency" Margin="360,105,380,235" Height="20" Width="60" BorderThickness="0" IsDropDownOpen="False" Grid.Row="1">
             <ComboBoxItem Content="CHF" Foreground="Black"/>
             <ComboBoxItem Content="EURO" Background="Transparent"/>
             <ComboBoxItem Content="USD" Background="Transparent"/>
@@ -94,9 +94,6 @@
                FontSize="16px" FontWeight="DemiBold"/>
 
         <ComboBox Grid.RowSpan="2" Background="White" x:Name="cbPaymentMethod" Margin="45, 120, 120, 0" Grid.Column="6" Height="20" Width="120" HorizontalAlignment="Left" BorderThickness="0" Foreground="Black">
-            <ComboBoxItem Content="PayPal"/>
-            <ComboBoxItem Content="Mastercard"/>
-            <ComboBoxItem Content="Postfinance"/>
         </ComboBox>
 
         <Label Content="Date + Time:"
