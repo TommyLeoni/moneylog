@@ -24,30 +24,21 @@ namespace M120Projekt
         public EditView()
         {
             InitializeComponent();
-            Data.Global.editView = this;
+        }
+        public EditView(Data.Finances entry)
+        {
+            InitializeComponent();
+            this.entryToEdit = entry;
         }
         private void initialState()
         {
             fillInData();
-            disableButtons();
+            SaveButton.IsEnabled = true;
+            SaveButton.IsEnabled = false;
         }
         public void setEntry(Data.Finances entry)
         {
             this.entryToEdit = entry;
-        }
-        private void disableButtons()
-        {
-            foreach (Button b in tools.FindVisualChildren<Button>(this).ToList())
-            {
-                b.IsEnabled = false;
-            }
-        }
-        private void enableButtons()
-        {
-            foreach (Button b in tools.FindVisualChildren<Button>(this).ToList())
-            {
-                b.IsEnabled = true;
-            }
         }
         private void fillInData()
         {
@@ -74,9 +65,18 @@ namespace M120Projekt
             }
             else
             {
-                disableButtons();
+                SaveButton.IsEnabled = false;
             }
         }
+
+        private void enableButtons()
+        {
+            foreach (Button b in tools.FindVisualChildren<Button>(this).ToList())
+            {
+                b.IsEnabled = true;
+            }
+        }
+
         private void throwWarning(String warning)
         {
             warningField.Content = warning;
@@ -100,7 +100,6 @@ namespace M120Projekt
                     cbPaymentMethod.Text == entryToEdit.PaymentMethod ? entryToEdit.PaymentMethod : cbPaymentMethod.Text,
                     DateTime.Now);
                 this.Close();
-                Data.Global.editView = new EditView();
                 Data.Global.mainWindow.refreshFinances();
             }
             catch (Exception ex)

@@ -16,7 +16,6 @@ namespace M120Projekt
     {
         private Boolean isDark = false;
         private Tools tools = new Tools();
-        private EditView editView = new EditView();
         private Brush darkBrush = new SolidColorBrush(Color.FromArgb(255, 28, 40, 43));
 
         public MainWindow()
@@ -26,7 +25,7 @@ namespace M120Projekt
             Data.Global.mainWindow = this;
             Data.Global.openNewEntryForm = this.openNewEntryForm;
             Data.Global.newEntryForm = this.newEntryForm;
-            Data.Global.editView = this.editView;
+            Data.Global.editView = new EditView();
             refreshFinances();
         }
         public void refreshFinances()
@@ -80,7 +79,7 @@ namespace M120Projekt
             {
                 if (financesContainer.SelectedIndex != -1)
                 {
-                    Data.Global.editView.setEntry(financesContainer.SelectedItem as Data.Finances);
+                    Data.Global.editView = new EditView(financesContainer.SelectedItem as Data.Finances);
                     Data.Global.editView.Show();
                 }
                 else

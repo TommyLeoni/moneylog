@@ -138,7 +138,7 @@
                  Grid.Row="1"
                  Margin="30,250,0,90" Grid.ColumnSpan="2" TextChanged="TbDateTime_TextChanged" BorderThickness="0"></TextBox>
 
-        <Button x:Name="btnSave"
+        <Button Name="SaveButton"
                 Click="BtnSave_Click"
                 Grid.Row="1"
                 Width="100"

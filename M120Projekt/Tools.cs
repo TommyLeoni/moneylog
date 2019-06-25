@@ -95,6 +95,7 @@ namespace M120Projekt
             Data.Global.mainWindow.CloseButtonIcon.Effect = new InvertEffect();
             Data.Global.mainWindow.SettingsButtonIcon.Effect = new InvertEffect();
             Data.Global.mainWindow.RefreshButtonIcon.Effect = new InvertEffect();
+            Data.Global.openNewEntryForm.AddIcon.Effect = new InvertEffect();
         }
 
         public void disableDarkMode()
@@ -133,6 +134,7 @@ namespace M120Projekt
             Data.Global.mainWindow.CloseButtonIcon.Effect = null;
             Data.Global.mainWindow.SettingsButtonIcon.Effect = null;
             Data.Global.mainWindow.RefreshButtonIcon.Effect = null;
+            Data.Global.openNewEntryForm.AddIcon.Effect = null;
         }
         public List<DependencyObject> getAllDependencyObjects()
         {
